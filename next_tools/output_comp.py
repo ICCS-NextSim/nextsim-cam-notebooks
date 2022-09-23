@@ -1,3 +1,7 @@
+"""
+This module contains tests to check that NextSim output is valid.
+"""
+
 import numpy as np
 import xarray as xr
 
