@@ -26,3 +26,7 @@ sit_output = data.sit.to_masked_array()
 #Get the mask
 mask = ma.getmaskarray(sit_output[0])
 
+### Comparison 
+
+Files to test the comparison can be found [here](https://drive.google.com/drive/folders/1MggqKfSV-AvG_L85Am_4jvmNvk3jClwJ?usp=sharing)
+
