@@ -8,6 +8,7 @@ dependencies:
   - pip:
     - cmocean
     - gdown
+    - h5netcdf
     - matplotlib
     - mock
     - netcdf4
