@@ -19,13 +19,40 @@ def output_comp(file1, file2, eps=1e-2):
     eps : float
         Maximum relative error
     """
+    
+    def compare_field(data1, data2):
+        """
+        This function compares one field
 
+        Parameters
+        ----------
+        data1, data2 : numpy array 
+            Data arrays that should be equal. 
+            
+
+        Returns
+        -------
+        Bool if fields are equal.
+
+        """
+        return np.nanmax(np.abs(data1-data2)) < eps * np.nanmax(np.abs(data1))
+        
     data1 = xr.open_dataset(file1)
     data2 = xr.open_dataset(file2)
 
     fields = ["sit", "sic"]
 
-    for i in range(len(fields)):
-        assert np.nanmax(getattr(data1, fields[i]).data
-                         - getattr(data2, fields[i]).data
-                         ) < eps * np.nanmax(getattr(data1, fields[i]).data), fields[i] + "difference too large."
+    
+    for field in fields: 
+        data1 = getattr(data1, field).data
+        data2 = getattr(data2, field).data
+        is_match = compare_field(data1, data2)
+        
+        if not is_match:
+            msg = "Difference field " + field + " is too large."
+            print(msg)
+            return False
+            
+    return True
+        
+        
